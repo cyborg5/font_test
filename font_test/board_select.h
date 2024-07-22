@@ -97,3 +97,45 @@
     display.setBacklight(255);
   };
 #endif
+
+#ifdef USE_GIGA_GFX
+  /*
+   * Definitions for the Arduino Giga R1 and its conmpanion Giga Display.
+   */
+
+  #include "Arduino_GigaDisplay_GFX.h"
+
+  GigaDisplay_GFX display;
+  #define DWIDTH 800
+  #define DHEIGHT 480
+  #define COLOR_BLACK  0
+  #define COLOR_YELLOW display.color565(0xFF, 0xFF, 0)
+  #define COLOR_WHITE  0xFFFF
+  void Initialize_Display(void){ 
+    display.begin();
+    display.setRotation(1);
+  };
+#endif
+
+#ifdef USE_MCUFRIEND
+  /*
+   * Definitions for the 2.8 inch MCUFRIEND displays.
+   */
+
+  #include <Adafruit_GFX.h>
+  #include <MCUFRIEND_kbv.h>
+  MCUFRIEND_kbv display;
+
+  #define DWIDTH 320
+  #define DHEIGHT 240
+  #define COLOR_BLACK  0
+  #define COLOR_YELLOW 0xFFE0
+  #define COLOR_WHITE  0xFFFF
+  void Initialize_Display(void){ 
+    uint16_t ID = display.readID();
+    Serial.print("TFT ID = 0x");
+    Serial.println(ID, HEX);
+    display.begin(ID);
+    display.setRotation(1);
+  };
+#endif

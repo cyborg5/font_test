@@ -10,6 +10,8 @@
 //#define USE_HX8357    //3.5 inch 480x320 TFT Feather Wing
 //#define USE_HALLOWING //Adafruit Hallowing M0 Express
 //#define USE_PYGAMER   //Adafruit PyGamer M4 Express
+//#define USE_GIGA_GFX    //Arduino Giga R1 with display
+//#define USE_MCUFRIEND     // 2.8 inch 240x320 MCUFRIEND displays
 #include "board_select.h"
 
 /*
@@ -61,7 +63,7 @@ void Show(void)  {
   #define BASE_R 22
   uint8_t Max_C = DWIDTH / (DELTA_C * Magnifier);
   uint8_t Max_R = DHEIGHT / (DELTA_R * Magnifier);
-  uint8_t NumChar = Max_C * Max_R;
+  uint16_t NumChar = Max_C * Max_R;
   uint16_t Last_Glyph = min(First_Glyph+NumChar-1,SymbolMono18pt7b.last+128-32);
   Serial.print("Displaying "); Serial.print(NumChar,DEC);
   Serial.print(" glyphs in "); Serial.print(Max_R,DEC);
